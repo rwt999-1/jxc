@@ -13,6 +13,18 @@
         <result column="address" property="address" jdbcType="VARCHAR" />
         <result column="remarks" property="remarks" jdbcType="VARCHAR" />
     </resultMap>
+    <select id="getComboboxList" resultMap="BaseResultMap">
+        SELECT
+        t_supplier.supplier_id,
+        t_supplier.supplier_name
+        FROM
+        t_supplier
+        <where>
+            <if test="supplierName != null and supplierName != ''">
+                t_supplier.supplier_name LIKE CONCAT('%', #{supplierName} ,'%')
+            </if>
+        </where>
+    </select>
 
     <select id="getSupplierList" resultMap="BaseResultMap">
         SELECT
