@@ -4,6 +4,7 @@ import com.atguigu.jxc.entity.Supplier;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.WeakHashMap;
 
 /**
  * @description 供应商
@@ -21,6 +22,8 @@ public interface SupplierDao {
     Supplier getSupplierById(Integer supplierId);
 
     Integer deleteSupplier(Integer supplierId);
+
+    List<Supplier> queryComboboxList(@Param("supplierName") String q);
 
 
 }

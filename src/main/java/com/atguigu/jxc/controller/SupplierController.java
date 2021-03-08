@@ -6,8 +6,7 @@ import com.atguigu.jxc.service.SupplierService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -55,5 +54,16 @@ public class SupplierController {
     @RequiresPermissions(value = "供应商管理")
     public ServiceVO delete(String ids) {
         return supplierService.delete(ids);
+    }
+
+    /**
+     * 供应商下拉列表查询
+     *
+     * @return List<Supplier>
+     */
+    @RequestMapping("/getComboboxList")
+    @RequiresPermissions(value = "供应商管理")
+    public List<Supplier> queryComboboxList(@RequestParam(required = false) String q){
+        return this.supplierService.queryComboboxList(q);
     }
 }

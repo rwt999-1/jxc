@@ -91,5 +91,18 @@
         WHERE supplier_id = #{supplierId}
     </delete>
 
+    <select id="queryComboboxList"  resultMap="BaseResultMap">
+        SELECT
+            t_supplier.supplier_id,
+            t_supplier.supplier_name
+        FROM
+            t_supplier
+        <where>
+            <if test="supplierName != null and supplierName != ''">
+              and  t_supplier.supplier_name LIKE CONCAT('%', #{supplierName} ,'%')
+            </if>
+        </where>
+    </select>
+
 
 </mapper>
