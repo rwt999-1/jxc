@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface CustomerDao {
 
-    List<Customer> getCustomerList(@Param("offSet") Integer offSet, @Param("pageRow") Integer pageRow, @Param("customerName") String customerName);
+    List<Customer> getCustomerList(int offSet, Integer rows, String customerName);
 
     Integer getCustomerCount(@Param("customerName") String customerName);
 
@@ -21,5 +21,7 @@ public interface CustomerDao {
     Customer getCustomerById(Integer customerId);
 
     Integer deleteCustomer(Integer customerId);
+
+    List<Customer> getComboboxList(@Param("customerName") String q);
 
 }

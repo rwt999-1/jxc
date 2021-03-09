@@ -13,7 +13,18 @@
         <result column="address" property="address" jdbcType="VARCHAR" />
         <result column="remarks" property="remarks" jdbcType="VARCHAR" />
     </resultMap>
-
+    <select id="getComboboxList" resultMap="BaseResultMap">
+        SELECT
+        t_customer.customer_id,
+        t_customer.customer_name
+        FROM
+        t_customer
+        <where>
+            <if test="customerName != null and customerName != ''">
+                t_customer.customer_name LIKE CONCAT('%', #{customerName} ,'%')
+            </if>
+        </where>
+    </select>
     <select id="getCustomerList" resultMap="BaseResultMap">
         SELECT
             t_customer.customer_id,

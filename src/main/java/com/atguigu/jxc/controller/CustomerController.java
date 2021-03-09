@@ -7,6 +7,7 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -57,4 +58,19 @@ public class CustomerController {
     public ServiceVO delete(String ids) {
         return customerService.delete(ids);
     }
+
+
+    /**
+     * 客户下拉列表
+     * @param "String" q（客户名称）
+     * @return List<Customer>
+     */
+    @RequestMapping("/getComboboxList")
+    @RequiresPermissions(value = "客户管理")
+    public List<Customer>  getComboboxList(@RequestParam(required = false) String q){
+        List<Customer> comboboxList = this.customerService.getComboboxList(q);
+        return comboboxList;
+    }
+
+
 }

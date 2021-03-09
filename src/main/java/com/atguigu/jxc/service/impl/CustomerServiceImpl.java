@@ -10,6 +10,7 @@ import com.atguigu.jxc.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private LogService logService;
-    @Autowired
+    @Resource
     private CustomerDao customerDao;
 
     @Override
@@ -76,5 +77,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         return new ServiceVO<>(SuccessCode.SUCCESS_CODE, SuccessCode.SUCCESS_MESS);
     }
+
+    @Override
+    public List<Customer> getComboboxList(String q) {
+        List<Customer> comboboxList = customerDao.getComboboxList(q);
+        return comboboxList;
+    }
+
 
 }

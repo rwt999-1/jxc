@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.jxc.dao.CustomerReturnListGoodsDao">
+    <resultMap id="BaseResultMap" type="com.atguigu.jxc.entity.CustomerReturnListGoods">
+        <result column="customer_return_list_goods_id" property="customerReturnListGoodsId" jdbcType="INTEGER"></result>
+        <result column="goods_id" property="goodsId" jdbcType="INTEGER"></result>
+        <result column="goods_code" property="goodsCode" jdbcType="VARCHAR"></result>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"></result>
+        <result column="goods_model" property="goodsModel" jdbcType="VARCHAR"></result>
+        <result column="goods_num" property="goodsNum" jdbcType="INTEGER"></result>
+        <result column="goods_unit" property="goodsUnit" jdbcType="VARCHAR"></result>
+        <result column="price" property="price" jdbcType="FLOAT"></result>
+        <result column="total" property="total" jdbcType="FLOAT"></result>
+        <result column="customer_return_list_id" property="customerReturnListId" jdbcType="INTEGER"></result>
+        <result column="goods_type_id" property="goodsTypeId" jdbcType="INTEGER"></result>
+    </resultMap>
+    <insert id="saveCustomerReturnListGoods" useGeneratedKeys="true" keyProperty="customerReturnListGoodsId" parameterType="com.atguigu.jxc.entity.CustomerReturnListGoods">
+        INSERT INTO t_customer_return_list_goods(goods_id,goods_code,goods_name,goods_model,goods_num
+                                          ,goods_unit,price,total,customer_return_list_id,goods_type_id)
+        VALUES (    #{goodsId},#{goodsCode},#{goodsName},#{goodsModel},
+                    #{goodsNum},#{goodsUnit},#{price},#{total},#{customerReturnListId},#{goodsTypeId})
+    </insert>
+</mapper>
