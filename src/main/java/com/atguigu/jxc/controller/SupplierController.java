@@ -7,10 +7,12 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * @description 供应商Controller控制器
@@ -56,4 +58,23 @@ public class SupplierController {
     public ServiceVO delete(String ids) {
         return supplierService.delete(ids);
     }
+
+    /**
+     * 供应商下拉列表查询
+     * 请求URL：http://localhost:8080/supplier/getComboboxList
+     * 请求参数：String q（供应商名称模糊查询） RequestParam
+     * 请求方式：POST
+     * 返回值类型：JSON
+     * 返回值：List<Supplier>
+     */
+    @RequestMapping("/getComboboxList")
+    public List<Supplier> getComboboxList(@RequestParam(required = false) String p) {
+        return supplierService.getComboboxList(p);
+
+
+    }
+
+
+
+
 }

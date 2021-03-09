@@ -5,6 +5,29 @@
 
 <mapper namespace="com.atguigu.jxc.dao.SupplierDao">
 
+    <resultMap id="BaseResultMap1" type="com.atguigu.jxc.entity.Supplier">
+        <result column="supplier_id" property="supplierId" jdbcType="INTEGER" />
+        <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+        <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getComboboxList" resultMap="BaseResultMap1">
+        select
+        t_supplier.supplier_id,
+        t_supplier.supplier_name
+        FROM
+        t_supplier
+        <where>
+            <if test="supplierName != null and supplierName != ''">
+                t_supplier.supplier_name LIKE CONCAT('%', #{supplierName} ,'%')
+            </if>
+        </where>
+    </select>
+
+
     <resultMap id="BaseResultMap" type="com.atguigu.jxc.entity.Supplier">
         <result column="supplier_id" property="supplierId" jdbcType="INTEGER" />
         <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
